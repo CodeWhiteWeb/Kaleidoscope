@@ -15,4 +15,6 @@ if (window.DeviceOrientationEvent) {
         scope.angleTarget = factorx + 2;
         scope.zoomTarget = 0.5 + 4.0 * factory;
     });
-}```
+}
+```
+Check Out the Project online : [here](http://codewhiteweb.cf/Kaleidoscope/)
