@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Prototype</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="container"></div>
+    </body>
+    
+    <script type="text/javascript">
+var images = [
+            "https://source.unsplash.com/random/1920x1080/?galaxy",
+            "https://source.unsplash.com/random/1920x1080/?galaxy"
+];
+        
+var container = $("#container");
+var scope = new Graphemescope( container[0] );
+        
+var index = 0;
+function changePicture() {
+    scope.setImage(images[index]);  
+    index = (index + 1) % images.length;
+};
+
+setInterval(changePicture, 10000);
+changePicture();
+
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', function(event) {
+        var x = Math.round(event.beta);
+        var y = Math.round(event.gamma);
+        var factorx = y / $(window).width();
+        var factory = x / $(window).height();
+        scope.angleTarget = factorx + 2;
+        scope.zoomTarget = 0.5 + 4.0 * factory;
+    });
+} else {
+    alert("Your device does not support device orientated motions.");
+}
+        
+$(window).mousemove(function(event) {
+    var factorx = event.pageX / $(window).width();
+    var factory = event.pageY / $(window).height()
+    scope.angleTarget = factorx;
+    scope.zoomTarget = 0.5 + 3.0 * factory;
+});
+        
+var resizeHandler = function() {
+    container.height( $(window).height() );
+    container.width( $(window).width() );
+};
+
+$(window).resize(resizeHandler);
+$(window).resize();
+container.click(changePicture);
+    </script>
+</html>
