@@ -1,4 +1,4 @@
-window.onload = alert("If you're using mobile, tilt your phone side to side and up and down to see it move! If you're on PC just hover with your mouse!");
+// window.onload = alert("If you're using mobile, tilt your phone side to side and up and down to see it move! If you're on PC just hover with your mouse!");
 
 (function () {
     var a, b;
